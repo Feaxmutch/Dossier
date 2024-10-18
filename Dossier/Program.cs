@@ -4,10 +4,10 @@
     {
         static void Main()
         {
-            const string MenuAddDossier = "1";
-            const string MenuWriteDossers = "2";
-            const string MenuDeleteDosser = "3";
-            const string MenuFindDosserBySurname = "4";
+            const string CommandAddDossier = "1";
+            const string CommandWriteDossers = "2";
+            const string CommandDeleteDosser = "3";
+            const string CommandFindDosserBySurname = "4";
             const string CommandExit = "5";
 
             string[] names = Array.Empty<string>();
@@ -19,29 +19,29 @@
             {
                 Console.Clear();
                 Console.CursorVisible = false;
-                Console.WriteLine($"\n{MenuAddDossier}) добавить досье" +
-                                  $"\n{MenuWriteDossers}) вывести все досье" +
-                                  $"\n{MenuDeleteDosser}) удалить досье" +
-                                  $"\n{MenuFindDosserBySurname}) поиск по фамилии" +
+                Console.WriteLine($"\n{CommandAddDossier}) добавить досье" +
+                                  $"\n{CommandWriteDossers}) вывести все досье" +
+                                  $"\n{CommandDeleteDosser}) удалить досье" +
+                                  $"\n{CommandFindDosserBySurname}) поиск по фамилии" +
                                   $"\n{CommandExit}) выход");
 
                 userInput = Console.ReadLine();
 
                 switch (userInput)
                 {
-                    case MenuAddDossier:
+                    case CommandAddDossier:
                         AddDossier(ref names, ref posts);
                         break;
 
-                    case MenuWriteDossers:
+                    case CommandWriteDossers:
                         WriteAllDossiers(names, posts);
                         break;
 
-                    case MenuDeleteDosser:
+                    case CommandDeleteDosser:
                         DeleteDossier(ref names, ref posts);
                         break;
 
-                    case MenuFindDosserBySurname:
+                    case CommandFindDosserBySurname:
                         FindDossierBySurname(names, posts);
                         break;
 
@@ -92,8 +92,9 @@
 
         static void WriteDossier(string[] names, string[] posts, int dosserNumber)
         {
-            string name = names[dosserNumber - 1];
-            string post = posts[dosserNumber - 1];
+            int dosserIndex = dosserNumber - 1;
+            string name = names[dosserIndex];
+            string post = posts[dosserIndex];
 
             Console.WriteLine($"{dosserNumber}. {name} - {post}");
         }
@@ -173,34 +174,32 @@
 
         static string[] AddElement(string[] array, string newElement)
         {
-            string[] newArray = new string[array.Length + 1];
+            string[] modifiedArray = new string[array.Length + 1];
 
             for (int i = 0; i < array.Length; i++)
             {
-                newArray[i] = array[i];
+                modifiedArray[i] = array[i];
             }
 
-            newArray[array.Length] = newElement;
-            return newArray;
+            modifiedArray[array.Length] = newElement;
+            return modifiedArray;
         }
 
         static string[] RemoveElement(string[] array, int elementIndex)
         {
-            string[] newArray = new string[array.Length - 1];
+            string[] modifiedArray = new string[array.Length - 1];
 
-            array[elementIndex] = null;
-
-            for (int i = elementIndex; i < newArray.Length; i++)
+            for (int i = elementIndex; i < modifiedArray.Length; i++)
             {
-                array[i] = array[i + 1];
+                modifiedArray[i] = array[i + 1];
             }
 
-            for (int i = 0; i < newArray.Length; i++)
+            for (int i = 0; i < elementIndex; i++)
             {
-                newArray[i] = array[i];
+                modifiedArray[i] = array[i];
             }
 
-            return newArray;
+            return modifiedArray;
         }
     }
 }
