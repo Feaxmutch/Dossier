@@ -11,8 +11,6 @@
             const string CommandExit = "5";
 
             string[] names = Array.Empty<string>();
-            string[] surnames = Array.Empty<string>();
-            string[] patronymics = Array.Empty<string>();
             string[] posts = Array.Empty<string>();
             string userInput = string.Empty;
             bool isWorking = true;
